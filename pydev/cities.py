@@ -35,7 +35,8 @@ def load_use_model(version='standard'):
     if version == 'standard':
         module_url = 'https://tfhub.dev/google/universal-sentence-encoder/4'
     elif version == 'lite':
-        module_url = 'https://tfhub.dev/google/universal-sentence-encoder-lite/2'
+        module_url = (
+            'https://tfhub.dev/google/universal-sentence-encoder-lite/2')
     else:
         raise ValueError(f'Unknown version: {version}')
 
