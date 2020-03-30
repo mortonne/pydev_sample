@@ -131,7 +131,7 @@ def city_vector(name, model, sentences=None):
 
 
 def compare_cities(reference_city, comparison_cities, model=None,
-                   model_version='standard'):
+                   model_version='standard', sentences=30):
     """
     Compare a reference city to a list of comparison cities.
 
@@ -150,6 +150,9 @@ def compare_cities(reference_city, comparison_cities, model=None,
         If `model` not specified, this version of the Universal
         Sentence Encoder will be downloaded and used.
 
+    sentences : int
+        Number of sentences to use from each city's summary text.
+
     Returns
     -------
     results : pandas.Series
@@ -158,8 +161,8 @@ def compare_cities(reference_city, comparison_cities, model=None,
     """
     if model is None:
         model = load_use_model(model_version)
-    reference = city_vector(reference_city, model).numpy()
-    comparison = np.vstack([city_vector(name, model).numpy()
+    reference = city_vector(reference_city, model, sentences).numpy()
+    comparison = np.vstack([city_vector(name, model, sentences).numpy()
                             for name in comparison_cities])
     similarity = 1 - distance.cdist(reference, comparison, 'correlation')
     results = pd.Series(similarity[0], index=comparison_cities)
