@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name='pydev_sample',
-    version='0.1.0',
+    version='0.2.0',
     description='Sample package to illustrate Python development.',
     author='Neal Morton',
     author_email='mortonne@gmail.com',
