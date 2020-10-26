@@ -1,9 +1,17 @@
 import setuptools
 
+
+def readme():
+    with open('README.md') as f:
+        return f.read()
+
+
 setuptools.setup(
     name='pydev-sample',
     version='0.2.0',
     description='Sample package to illustrate Python development.',
+    long_description=readme(),
+    long_description_content_type="text/markdown",
     author='Neal Morton',
     author_email='mortonne@gmail.com',
     license='GPLv3',
