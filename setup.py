@@ -18,6 +18,9 @@ setuptools.setup(
         'numpy',
         'scipy',
         'pandas',
+        'wikipedia',
+        'tensorflow',
+        'tensorflow_hub',
     ],
     classifiers=[
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
