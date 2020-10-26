@@ -8,7 +8,8 @@ setuptools.setup(
     author_email='mortonne@gmail.com',
     license='GPLv3',
     url='http://github.com/mortonne/pydev_sample',
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages('src'),
+    package_dir={'': 'src'},
     scripts=[
         'scripts/compare_cities',
         'scripts/city_summary',
