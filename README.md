@@ -18,3 +18,8 @@ To install the development version from GitHub:
 ```bash
 pip install git+git://github.com/mortonne/pydev_sample
 ```
+
+## Todo
+
+* Add unit tests.
+* Add documentation example.
