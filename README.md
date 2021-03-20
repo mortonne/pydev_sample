@@ -21,5 +21,4 @@ pip install git+git://github.com/mortonne/pydev_sample
 
 ## Todo
 
-* Add unit tests.
 * Add documentation example.
