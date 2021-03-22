@@ -22,3 +22,4 @@ pip install git+git://github.com/mortonne/pydev_sample
 ## Todo
 
 * Add documentation example.
+* Explain how to work with a repository clone.
