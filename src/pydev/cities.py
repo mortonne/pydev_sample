@@ -18,7 +18,7 @@ import wikipedia
 import tensorflow_hub as hub
 
 
-def load_use_model(version='standard'):
+def load_use_model(version="standard"):
     """
     Load the univeral sentence encoder from Tensorflow Hub.
 
@@ -32,13 +32,12 @@ def load_use_model(version='standard'):
     model : callable
         Tensorflow model.
     """
-    if version == 'standard':
-        module_url = 'https://tfhub.dev/google/universal-sentence-encoder/4'
-    elif version == 'lite':
-        module_url = (
-            'https://tfhub.dev/google/universal-sentence-encoder-lite/2')
+    if version == "standard":
+        module_url = "https://tfhub.dev/google/universal-sentence-encoder/4"
+    elif version == "lite":
+        module_url = "https://tfhub.dev/google/universal-sentence-encoder-lite/2"
     else:
-        raise ValueError(f'Unknown version: {version}')
+        raise ValueError(f"Unknown version: {version}")
 
     model = hub.load(module_url)
     return model
@@ -63,10 +62,12 @@ def get_city_title(city_name):
     ValueError
         If the city title is not found.
     """
-    names = {'Austin': 'Austin, Texas',
-             'Boulder': 'Boulder, Colorado',
-             'Nashville': 'Nashville, Tennessee',
-             'New York': 'New York City'}
+    names = {
+        "Austin": "Austin, Texas",
+        "Boulder": "Boulder, Colorado",
+        "Nashville": "Nashville, Tennessee",
+        "New York": "New York City",
+    }
     if city_name in names:
         title = names[city_name]
     else:
@@ -75,10 +76,10 @@ def get_city_title(city_name):
         if city_name in results:
             title = city_name
         else:
-            print(f'No exact match for {city_name}. Search results:')
+            print(f"No exact match for {city_name}. Search results:")
             for name in results:
                 print(name)
-            raise ValueError('City title not found.')
+            raise ValueError("City title not found.")
     return title
 
 
@@ -130,8 +131,13 @@ def city_vector(name, model, sentences=None):
     return vector
 
 
-def compare_cities(reference_city, comparison_cities, model=None,
-                   model_version='standard', sentences=30):
+def compare_cities(
+    reference_city,
+    comparison_cities,
+    model=None,
+    model_version="standard",
+    sentences=30,
+):
     """
     Compare a reference city to a list of comparison cities.
 
@@ -162,8 +168,9 @@ def compare_cities(reference_city, comparison_cities, model=None,
     if model is None:
         model = load_use_model(model_version)
     reference = city_vector(reference_city, model, sentences).numpy()
-    comparison = np.vstack([city_vector(name, model, sentences).numpy()
-                            for name in comparison_cities])
-    similarity = 1 - distance.cdist(reference, comparison, 'correlation')
+    comparison = np.vstack(
+        [city_vector(name, model, sentences).numpy() for name in comparison_cities]
+    )
+    similarity = 1 - distance.cdist(reference, comparison, "correlation")
     results = pd.Series(similarity[0], index=comparison_cities)
     return results
